@@ -1,3 +1,5 @@
+import os
+import json
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -7,9 +9,9 @@ def salvar_lead(nome, telefone, mensagem):
                 "https://www.googleapis.com/auth/spreadsheets",
                 "https://www.googleapis.com/auth/drive"
             ]
-    creds = Credentials.from_service_account_file(
-        'credenciais.json', scopes=scopes
-    )
+    creds_dict = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+
+    creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
 
     client = gspread.authorize(creds)
 
