@@ -21,3 +21,6 @@ def receber_lead(lead: Lead):
     enviar_notificacao(lead.nome, lead.telefone, lead.mensagem)
     return {"mensagem": "Lead salvo e notificado!"}
 
+@app.get("/")
+def home():
+    return {"mensagem": "API de automação rodando 🚀"}
